@@ -1,8 +1,20 @@
 import unittest
-
+import random as rand
 from solution import Solution
 
 class Test(unittest.TestCase):
+
+    def __init__(self, methodName: str = "runTest") -> None:
+        super().__init__(methodName);
+        self.largeArray = self.generateArray(8192, random = True);
+        self.veryLargeArray = self.generateArray(12000, sequential = True);
+    
+
+    def generateArray(self, length, random = False, sequential = False):
+        if(sequential): return [i for i in range(length, 0, -1)];
+        elif(random): return [rand.randint(0, 10000) for i in range(length)];
+        else: return [];
+
     def test1(self):
         self.assertEqual(Solution().candy([1,0,2]), 5);
 
@@ -23,7 +35,14 @@ class Test(unittest.TestCase):
 
     def test6(self):
         self.assertEqual(Solution().candy([5,3,7,3]), 6);
+    
+    def test7(self):
+        correctAnswer = Solution().attempt(self.largeArray);
+        self.assertEqual(Solution().candy(self.largeArray), correctAnswer);
 
+    def test8(self):
+        correctAnswer = Solution().attempt(self.veryLargeArray);
+        self.assertEqual(Solution().candy(self.veryLargeArray), correctAnswer);
 
 if __name__ == '__main__':
     unittest.main();

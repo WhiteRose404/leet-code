@@ -37,10 +37,11 @@ class Solution:
             debug = candies;
             candies += length * (length + 1) // 2;
             if(last_subarr['length'] != -1):
-                # if(length == 1):
-                #     if(subarray[0] > last_subarr['last']): candies += 1;
-                    # print("handled")
-                if(last_subarr['asec']):
+                if(length == 1 and last_subarr['length'] == 1):
+                    if(subarray[0] > last_subarr['last']): candies += 1;
+                    elif(subarray[0] < last_subarr['last']): candies += 1;
+                    print("handled");
+                elif(last_subarr['asec']):
                     if(subarray[0] > last_subarr['last'] and last_subarr['length'] < length):
                         candies += (length - last_subarr['length']);
                     elif(subarray[0] < last_subarr['last'] and last_subarr['length'] <= length):
@@ -53,3 +54,21 @@ class Solution:
             last_subarr['last'] = subarray[-1];
         print("Candies: ", candies, "\n");
         return candies;
+
+
+    def attempt(self, ratings) -> int:
+        s = [1] * len(ratings);
+        flag = True;
+        while(flag):
+            flag = False;
+            for j in range(len(ratings)):
+                if( j != len(ratings) - 1):
+                    if(ratings[j] > ratings[j+1] and s[j] <= s[j+1]):
+                        s[j] = s[j+1] + 1
+                        flag = True
+                if(j and ratings[j] > ratings[j-1] and s[j] <= s[j-1]):
+                        s[j] = s[j-1] + 1
+                        flag = True 
+        return sum(s)
+
+
