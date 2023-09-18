@@ -1,0 +1,12 @@
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  testing-solutions:
+    runs-on: python:alpine-3.8
+    steps:
+      - uses: actions/checkout@v2
+      - import: candy/actions/test.yml
