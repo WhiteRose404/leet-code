@@ -44,5 +44,8 @@ class Test(unittest.TestCase):
         correctAnswer = Solution().attempt(self.veryLargeArray);
         self.assertEqual(Solution().candy(self.veryLargeArray), correctAnswer);
 
+    def test9(self):
+        arr = self.generateArray(20, random = True);
+        self.assertEqual(Solution().candy(arr), Solution().attempt(arr));
 if __name__ == '__main__':
     unittest.main();
