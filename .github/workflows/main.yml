@@ -11,8 +11,10 @@ jobs:
       # Step 1: checkout the repo
       - name: load the repo
         uses: actions/checkout@v2
-      # Step 2: run the candy tests
+      # Step 2: run the tests
       - name: Run candy tests
         run: |
           python3 candy/testing.py
-      
+      # - name: Run duplicate tests
+      #   run: |
+      #     python3 duplicate/testing.py
