@@ -6,7 +6,12 @@ on:
 
 jobs:
   testing-solutions:
-    runs-on: python:alpine-3.8
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - import: candy/actions/test.yml
+      # Step 1: checkout the repo
+      - name: load the repo
+        uses: actions/checkout@v2
+      # Step 2: run the candy tests
+      - name: Run candy tests
+        import: .github/actions/candy
+      
