@@ -5,18 +5,16 @@ from solution import Solution
 
 class Testing(unittest.TestCase):
     def generatArray(self, n):
-        k = random.randint(1, n - 1);
-        t = random.randint(1, n - 1);
-        sequence = [i for i in range(1, n - t)];
-        arr = [];
-        while(len(sequence) > 0):
-            arr.append(sequence.pop(random.randint(0, len(sequence) - 1)));
-        for i in range(t):
-            length = max(1, len(arr));
-            # insert k at random position
-            arr.insert(random.randint(0, length - 1), k);
-        return arr;
-
+        sequence = [i for i in range(1, n)];
+        repeat = random.randint(1, n - 1);
+        res = [];
+        for i in range(0, n):
+            randomIndex = 0 if len(sequence) == 1 else random.randint(0, len(sequence) - 1);
+            if(sequence[randomIndex] == repeat):
+                res.append(sequence[randomIndex]);
+            else:
+                res.append(sequence.pop(randomIndex));
+        return res;
 
     # simple tests
     def test1(self):
