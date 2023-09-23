@@ -15,6 +15,6 @@ jobs:
       - name: Run candy tests
         run: |
           python3 candy/testing.py
-      # - name: Run duplicate tests
-      #   run: |
-      #     python3 duplicate/testing.py
+      - name: Run duplicate tests
+        run: |
+          python3 duplicate/testing.py

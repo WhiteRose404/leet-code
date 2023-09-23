@@ -20,18 +20,20 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        # s = sum(nums);
-        # m = max(nums);
-        # n = len(nums);
-        # print("arr: ", nums, "sum: ", s, "max: ", m, "len: ", n)
-        # for k in nums:
-            # sum_k = k*(k-1)//2;
-            # sum_k_m = max(k*(m-k-1), 0);
-            # sum_k_n = k*(n-m+1);
-            # sum_k_k = ((m-k)*(m-k-1))//2;
-            # print("k: ", k, "itr: ", sum_k, sum_k_m, sum_k_n, sum_k_k)
-            # itr = sum_k + sum_k_m + sum_k_n + sum_k_k;
-            # if(s == itr): return k;
-            # print(k, itr, s)
-        return -1;
+        #############################
+        ##### needs to be fixed #####
+        ##  req: unmodified array  ##
+        #############################
+
+        res = -1;
+        for i in range(len(nums)):
+            target = abs(nums[i]);
+            if nums[target] < 0:
+                res = target;
+                break;
+            nums[target] = -nums[target];
+        for j in range(len(nums)):
+            nums[j] = abs(nums[j]);
+        
+        return res;
 

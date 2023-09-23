@@ -37,18 +37,18 @@ class Testing(unittest.TestCase):
     def test4(self):
         test_arr = self.generatArray(80);
         self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
-    # def test5(self):
-    #     test_arr = self.generatArray(5000);
-    #     self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
-    # def test6(self):
-    #     test_arr = self.generatArray(2000);
-    #     self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
-    # def test7(self):
-    #     test_arr = self.generatArray(300);
-    #     self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
-    # def test8(self):
-    #     test_arr = self.generatArray(1000);
-    #     self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
+    def test5(self):
+        test_arr = self.generatArray(5000);
+        self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
+    def test6(self):
+        test_arr = self.generatArray(2000);
+        self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
+    def test7(self):
+        test_arr = self.generatArray(300);
+        self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
+    def test8(self):
+        test_arr = self.generatArray(1000);
+        self.assertEqual(Solution().duplicate(test_arr), Solution().sol(test_arr));
 
 
 if __name__ == '__main__':
