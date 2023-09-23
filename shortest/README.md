@@ -11,7 +11,7 @@ The goal is to return the length of the shortest cycle in the graph. If no cycle
 A cycle is defined as a path that starts and ends at the same node, and each edge in the path is used only once.
 
 ## Example 1
-![Shortest Cycle](./media/cropped.png.png)
+![Shortest Cycle](./media/cropped.png)
 
 
 **Input**:
