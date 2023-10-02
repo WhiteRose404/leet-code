@@ -11,6 +11,7 @@ class Testing(unittest.TestCase):
     def test4(self):
         self.assertEqual(Solution().shortest([[0,1],[1,2],[2,3],[3,4],[4,0]]), 5);
 
+    # add random cases
 if __name__ == '__main__':
     unittest.main()
     

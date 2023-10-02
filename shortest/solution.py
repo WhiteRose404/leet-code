@@ -77,3 +77,4 @@ class Solution:
             if(shcycle < shortest):
                 shortest = shcycle;
         return -1 if shortest == math.inf else shortest + 1;
+        # slow solution
