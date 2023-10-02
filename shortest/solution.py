@@ -1,65 +1,79 @@
-# class Node:
-#     def __init__(self, value):
-#         self.value = value
-#         self.neighbors = []
-#         self.visited = False;
-    
-#     # setters
-#     def addNeighbor(self, node):
-#         # check whether the neighbor already exists or not
-#         for neighbor in self.neighbors:
-#             if neighbor.value == node.value:
-#                 return;
-#         self.neighbors.append(node);
-#     def setNeighbors(self, neighbors):
-#         self.neighbors = neighbors;
+import math;
 
-#     # getters
-#     def getneighbors(self) -> list():
-#         return self.neighbors;
+class Leaf:
+    def __init__(self, key, value, history = []) -> None:
+        self.key = key;
+        self.value = value;
+        self.history = history;
+        self.children = [];
+    def getValue(self) -> int:
+        return self.value;
+    def getKey(self) -> int:
+        return self.key;
+    def getHistory(self) -> list:
+        return self.history;
+    def isVisted(self) -> bool:
+        return self.value in self.history;
+    def addChild(self, child) -> None:
+        self.children.append(child);
 
-# class Graph:
-#     def __init__(self, graph):
-#         self.nodes = [];
-#         for edge in graph:
-#             node_1 = self.getNode(edge[0]) if self.isExists(edge[0]) else self.createNode(edge[0]);
-#             node_2 = self.getNode(edge[1]) if self.isExists(edge[1]) else self.createNode(edge[1]);
-#             node_1.addNeighbor(node_2);
-#             node_2.addNeighbor(node_1);
+class Tree:
+    def __init__(self, graph) -> None:
+        self.graph = graph;
+        self.shortest = math.inf;
+        self.path = [];
+    def fillTree(self, pivote) -> None:
+        if(pivote.isVisted()):
+            hist = pivote.getHistory();
+            leng_hist = len(hist);
+            if(leng_hist < self.shortest):
+                self.shortest = leng_hist;
+                self.path = hist + [pivote.getValue()];
+            return None;
+        for edge in self.graph:
+            if(pivote.getKey() != edge[0] and pivote.getValue() == edge[1]):
+                child = Leaf(pivote.getValue(), edge[0], pivote.getHistory() + [pivote.getKey()]);
+                pivote.addChild(child);
+                self.fillTree(child);
+            
+            elif(pivote.getKey() != edge[1] and pivote.getValue() == edge[0]):
+                child = Leaf(pivote.getValue(), edge[1], pivote.getHistory() + [pivote.getKey()]);
+                pivote.addChild(child);
+                self.fillTree(child);
+        return None;
 
-#     def createNode(self, value) -> Node:
-#         node = Node(value);
-#         self.nodes.append(node);
-#         return node;
+    def getShortestCycle(self) -> int:
+        return self.shortest;
 
-#     def isExists(self, value) -> bool:
-#         for node in self.nodes:
-#             if node.value == value:
-#                 return True;
-#         return False;
+    def getPath(self) -> list:
+        return self.path;
 
-#     def getNodes(self) -> list():
-#         return self.nodes;
 
-#     def getNode(self, value) -> Node:
-#         for node in self.nodes:
-#             if node.value == value:
-#                 return node;
-#         return None;
 
-#     def findShortestPath(self, start, end, minimum_step = 1) -> list:
-#         path = [];
-#         queue = [];
-
-#         pass
 
 class Solution:
-    def shortest(self, listGraph):
-        return 4;
-        graph = Graph(listGraph);
-        nodes = graph.getNodes();
-        start = nodes[0];
-        end = nodes[len(nodes) - 1];
-        print("shortest path from " + str(start.value) + " to " + str(end.value) + ":");
-        print("DEBUG");
-        print(end.value , [i.value for i in end.getneighbors()], listGraph);
+    def extractNodes(self) -> set:
+        nodes = set();
+        for edge in self.graph:
+            nodes.add(edge[0]);
+            nodes.add(edge[1]);
+        return nodes;
+
+    def getEdge(self, node):
+        for edge in self.graph:
+            if(node in edge):
+                return edge;
+
+    def shortest(self, listGraph) -> int:
+        self.graph = listGraph;
+        nodes = self.extractNodes();
+        shortest = math.inf;
+        for node in nodes:
+            v1, v2 = self.getEdge(node); 
+            pivote = Leaf(node, v2 if node == v1 else v1);
+            tree = Tree(listGraph);
+            tree.fillTree(pivote);
+            shcycle = tree.getShortestCycle();
+            if(shcycle < shortest):
+                shortest = shcycle;
+        return -1 if shortest == math.inf else shortest + 1;
