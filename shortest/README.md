@@ -13,7 +13,6 @@ A cycle is defined as a path that starts and ends at the same node, and each edg
 ## Example 1
 ![Shortest Cycle](./media/cropped.png)
 
-
 **Input**:
 ```python
 n = 7
